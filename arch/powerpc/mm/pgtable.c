@@ -226,6 +226,9 @@ int ptep_set_access_flags(struct vm_area_struct *vma, unsigned long address,
 			assert_pte_locked(vma->vm_mm, address);
 		__ptep_set_access_flags(vma->vm_mm, ptep, entry, address);
 		flush_tlb_page(vma, address);
+	} else {
+		WARN_ON_ONCE(1);
+		radix__flush_tlb_all();
 	}
 	return changed;
 }
