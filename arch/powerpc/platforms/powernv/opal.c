@@ -455,6 +455,11 @@ int opal_machine_check(struct pt_regs *regs)
 	if (opal_recover_mce(regs, &evt))
 		return 1;
 
+	if (!panic_on_oops) {
+		die("Unrecoverable Machine check", regs, SIGBUS);
+		return 0;
+	}
+
 	/*
 	 * Unrecovered machine check, we are heading to panic path.
 	 *

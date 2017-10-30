@@ -283,6 +283,11 @@ static void hmi_event_handler(struct work_struct *work)
 			print_hmi_event_info(hmi_evt);
 		}
 
+		if (!panic_on_oops) {
+			die("Unrecoverable HMI exception", NULL, SIGBUS);
+			return;
+		}
+
 		/*
 		 * Unrecoverable HMI exception. We need to inform BMC/OCC
 		 * about this error so that it can collect relevant data
