@@ -1,3 +1,8 @@
+linux-hwe (4.10.0-382) xenial; urgency=low
+
+  * remove page fault patch which is causing regression
+
+ -- Breno Leitao <leitao@debian.org>  Tue, 10 Oct 2017 17:32:31 +0200
 linux-hwe (4.10.0-381) xenial; urgency=low
 
   * Backport Avoid checkstop on HMI and MCE from http://patchwork.ozlabs.org/patch/829825/
