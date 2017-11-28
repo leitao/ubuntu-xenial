@@ -28,7 +28,6 @@
 #include <linux/printk.h>
 #include <linux/kmsg_dump.h>
 #include <linux/console.h>
-#include <linux/sched/debug.h>
 
 #include <asm/machdep.h>
 #include <asm/opal.h>
@@ -455,7 +454,7 @@ void pnv_platform_error_reboot(struct pt_regs *regs, const char *msg)
 	if (regs)
 		show_regs(regs);
 	smp_send_stop();
-	printk_safe_flush_on_panic();
+	printk_nmi_flush_on_panic();
 	kmsg_dump(KMSG_DUMP_PANIC);
 	bust_spinlocks(0);
 	debug_locks_off();
